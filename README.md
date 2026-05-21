@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# 💻 DevCatalog — Catálogo de Desenvolvedores
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Sobre o Projeto
+Este projeto é uma aplicação web interativa desenvolvida em **React com TypeScript e Vite**, criada como requisito parcial para a obtenção de nota da **2ª Avaliação da Unidade Curricular de Tecnologia para FrontEnd Avançado** (Centro Universitário UNIESP).
 
-Currently, two official plugins are available:
+O objetivo principal é demonstrar na prática o domínio de conceitos avançados de arquitetura frontend, incluindo componentização baseada em propriedades (Props), gerenciamento de estado reativo, ciclo de vida de componentes, roteamento dinâmico em Single Page Applications (SPA) e consumo de APIs REST externas de forma assíncrona.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🛠️ Tecnologias e Bibliotecas Utilizadas
+Para o desenvolvimento do ecossistema da aplicação, foram integradas as seguintes ferramentas:
+- **React 18**: Biblioteca base para a construção da interface modular.
+- **TypeScript**: Superset que adiciona tipagem estática, garantindo segurança e escalabilidade ao código (Type Safety).
+- **Vite**: Ferramenta de build ultra-rápida para o ambiente de desenvolvimento.
+- **Chakra UI (v3)**: Framework de estilização e biblioteca de componentes visuais baseada em *Style Props* e design responsivo.
+- **React Router DOM**: Gerenciador de rotas declarativas para navegação interna sem recarregamento de página.
+- **Axios**: Cliente HTTP robusto para a interceptação e consumo de dados de endpoints externos.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🌐 API Externa Consumida
+A aplicação integra-se de forma assíncrona com a API REST pública **JSONPlaceholder**.
+- **Endpoint principal utilizado:** `/users`
+- **Funcionalidades implementadas:** - Listagem geral de dados de forma síncrona com o ciclo de vida.
+  - Busca sob demanda de perfis individuais via parâmetros de rota (`/users/${id}`).
+  - Tratamento visual de estados de carregamento (`Spinner`) e tratamento robusto de erros e exceções de conexão (`try/catch/finally` e `Alert.Root`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📂 Estrutura de Pastas do Projeto (`/src`)
+O projeto foi organizado seguindo padrões de *clean code* e separação de conceitos:
+```text
+src/
+├── components/       # Componentes globais e reutilizáveis (Header, Footer, UserCard)
+├── pages/            # Telas mapeadas pelo sistema de rotas (Home, Details, About)
+├── services/         # Configuração e instâncias de serviços de API (Axios)
+├── App.tsx           # Arquivo mestre de layout e definição do ecossistema de Rotas
+└── main.tsx          # Ponto de entrada oficial do React e injeção do ChakraProvider
